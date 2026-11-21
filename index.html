@@ -1,0 +1,1599 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Happy 23rd Birthday, Aastha! 🎀</title>
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+  <script src="https://unpkg.com/lucide@0.460.0/dist/umd/lucide.min.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap"
+    rel="stylesheet" />
+  <style>
+    :root {
+      --pink-50: #fff0f6;
+      --pink-100: #ffe0ee;
+      --pink-200: #ffc2dc;
+      --pink-400: #ff69a8;
+      --pink-500: #ff3e8e;
+      --berry-900: #4a0e29;
+    }
+
+    html,
+    body {
+      height: 100%;
+      height: 100dvh;
+      margin: 0;
+      padding: 0;
+      overflow: hidden !important;
+      touch-action: manipulation;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #fff5f9;
+      color: #4a0e29;
+    }
+
+    .font-display {
+      font-family: 'Playfair Display', serif;
+    }
+
+    .font-hand {
+      font-family: 'Caveat', cursive;
+    }
+
+    .hk-bg-pattern {
+      background-image: linear-gradient(rgba(255, 244, 249, 0.92), rgba(255, 240, 246, 0.94)), url('./assets/hk-dots.jpg');
+      background-size: 340px;
+      background-repeat: repeat;
+    }
+
+    .gingham-strip {
+      background-image: url('./assets/hk-gingham.jpg');
+      background-size: 240px;
+      background-position: center;
+    }
+
+    @keyframes floatSlow {
+
+      0%,
+      100% {
+        transform: translateY(0px) rotate(0deg);
+      }
+
+      50% {
+        transform: translateY(-8px) rotate(2deg);
+      }
+    }
+
+    @keyframes spinVinyl {
+      from {
+        transform: rotate(0deg);
+      }
+
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    @keyframes flicker {
+
+      0%,
+      100% {
+        transform: scale(1) rotate(-2deg);
+        opacity: 1;
+      }
+
+      50% {
+        transform: scale(1.14) rotate(3deg);
+        opacity: 0.9;
+      }
+    }
+
+    @keyframes smokeRise {
+      0% {
+        transform: translateY(2px) scale(0.8);
+        opacity: 0.9;
+      }
+
+      50% {
+        transform: translateY(-12px) scale(1.3);
+        opacity: 0.6;
+      }
+
+      100% {
+        transform: translateY(-30px) scale(1.8);
+        opacity: 0;
+      }
+    }
+
+    @keyframes cardPopIn {
+      0% {
+        opacity: 0;
+        transform: scale(0.88) translateY(18px);
+      }
+
+      70% {
+        transform: scale(1.02) translateY(-2px);
+      }
+
+      100% {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+      }
+    }
+
+    .animate-float {
+      animation: floatSlow 4s ease-in-out infinite;
+    }
+
+    .vinyl-spinning {
+      animation: spinVinyl 6s linear infinite;
+    }
+
+    .vinyl-paused {
+      animation: spinVinyl 6s linear infinite;
+      animation-play-state: paused;
+    }
+
+    .flame {
+      animation: flicker 0.55s ease-in-out infinite;
+      transform-origin: bottom center;
+    }
+
+    .smoke-puff {
+      animation: smokeRise 1.3s cubic-bezier(0.2, 0.8, 0.2, 1) forwards !important;
+    }
+
+    .glass-card {
+      background: rgba(255, 255, 255, 0.88);
+      backdrop-filter: blur(14px);
+      border: 1.5px solid #ffc7df;
+      box-shadow: 0 14px 35px rgba(219, 39, 119, 0.10);
+    }
+
+    /* Retro Aesthetic Pink OS Window Styles (Inspo 1 & 2) */
+    .retro-pink-grid {
+      background-color: #fff8fb;
+      background-image:
+        linear-gradient(#ffccd9 1.5px, transparent 1.5px),
+        linear-gradient(90deg, #ffccd9 1.5px, transparent 1.5px);
+      background-size: 24px 24px;
+    }
+
+    .retro-window {
+      border: 3.5px solid #ff4081;
+      border-radius: 20px;
+      box-shadow: 0 25px 60px rgba(255, 64, 129, 0.22), 8px 8px 0px #fbcfe8;
+      background: #ffffff;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .retro-title-bar {
+      background: linear-gradient(90deg, #ff4081 0%, #f06292 60%, #ff4081 100%);
+      color: white;
+      border-top-left-radius: 16px;
+      border-top-right-radius: 16px;
+    }
+
+    .retro-win-btn {
+      width: 22px;
+      height: 22px;
+      border-radius: 5px;
+      background: #ffffff;
+      border: 1.5px solid #be185d;
+      color: #be185d;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 900;
+      font-size: 11px;
+      box-shadow: inset 1px 1px 0 #fff, 1px 1px 0 #9d174d;
+      cursor: pointer;
+      user-select: none;
+      transition: transform 0.08s ease;
+    }
+
+    .retro-win-btn:active {
+      transform: translate(1px, 1px);
+      box-shadow: inset 1px 1px 0 #9d174d;
+    }
+
+    .desktop-folder-btn {
+      transition: all 0.2s ease;
+    }
+
+    .desktop-folder-btn:hover {
+      transform: translateY(-2px) scale(1.02);
+    }
+
+    .desktop-folder-btn.folder-active {
+      border-color: #ff4081 !important;
+      background: #ffe4ef !important;
+      color: #be185d !important;
+      box-shadow: 0 4px 14px rgba(255, 64, 129, 0.3) !important;
+    }
+
+    /* Playing Card Fan Styles (like a fanned hand of cards) */
+    .card-fan-stage {
+      position: relative;
+      width: 100%;
+      height: 310px;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      perspective: 1200px;
+      overflow: visible;
+    }
+
+    @media (min-width: 640px) {
+      .card-fan-stage {
+        height: 375px;
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .card-fan-stage {
+        height: 400px;
+      }
+    }
+
+    .playing-card {
+      position: absolute;
+      bottom: 8px;
+      left: 50%;
+      width: 145px;
+      height: 220px;
+      margin-left: -72.5px;
+      transform-origin: 50% 120%;
+      border-radius: 14px;
+      background: #ffffff;
+      border: 2px solid #ffd6e7;
+      box-shadow: -3px 10px 24px rgba(74, 14, 41, 0.16);
+      transition: transform 0.45s cubic-bezier(0.2, 0.9, 0.3, 1), box-shadow 0.45s ease, border-color 0.45s ease;
+      cursor: pointer;
+      user-select: none;
+      will-change: transform;
+    }
+
+    @media (min-width: 640px) {
+      .playing-card {
+        bottom: 12px;
+        width: 195px;
+        height: 285px;
+        margin-left: -97.5px;
+        border-radius: 18px;
+        box-shadow: -4px 14px 30px rgba(74, 14, 41, 0.18);
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .playing-card {
+        width: 215px;
+        height: 315px;
+        margin-left: -107.5px;
+      }
+    }
+
+    .playing-card:hover:not(.card-active) {
+      filter: brightness(1.02);
+      transform: var(--base-fan) translateY(-14px) !important;
+    }
+
+    .playing-card.card-active {
+      z-index: 60 !important;
+      transform: translate3d(0, -38px, 0) rotate(0deg) scale(1.15) !important;
+      border-color: #ff3e8e !important;
+      box-shadow: 0 22px 46px rgba(255, 62, 142, 0.42), 0 0 0 3px rgba(255, 62, 142, 0.6) !important;
+    }
+
+    @media (max-width: 639px) {
+      .playing-card.card-active {
+        transform: translate3d(0, -26px, 0) rotate(0deg) scale(1.12) !important;
+      }
+    }
+  </style>
+</head>
+
+<body
+  class="hk-bg-pattern h-screen h-[100dvh] w-screen overflow-hidden flex flex-col justify-between select-none relative">
+
+  <!-- Entrance Gift Overlay -->
+  <div id="entrance-overlay"
+    class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-gradient-to-br from-pink-100/95 via-rose-50/95 to-pink-200/95 backdrop-blur-md transition-opacity duration-700">
+    <div
+      class="max-w-md w-full bg-white/95 rounded-3xl p-7 sm:p-9 text-center shadow-2xl border-2 border-pink-200 relative overflow-hidden">
+      <div class="absolute top-0 left-0 right-0 h-3 gingham-strip opacity-85"></div>
+      <div class="mt-2 mb-4 flex justify-center">
+        <div class="w-32 h-32 rounded-full overflow-hidden border-4 border-pink-200 shadow-lg bg-pink-50 animate-float">
+          <img src="./assets/hk-gift.jpg" alt="Hello Kitty Birthday Gift" class="w-full h-full object-cover" />
+        </div>
+      </div>
+      <span
+        class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-pink-100 text-pink-700 text-xs font-semibold tracking-wide uppercase mb-3">
+        🎀 Special Delivery
+      </span>
+      <h1 class="font-display text-3xl sm:text-4xl font-bold text-pink-950 mb-2">
+        Happy Birthday Aasthaaaaa!
+      </h1>
+      <p class="text-sm sm:text-base text-pink-800/80 mb-6 leading-relaxed">
+        Mulli pazta momos with mayonnaise
+      </p>
+      <button id="enter-btn" type="button"
+        class="w-full py-3.5 px-6 rounded-2xl bg-gradient-to-r from-pink-500 to-rose-500 hover:from-pink-600 hover:to-rose-600 text-white font-semibold text-base shadow-lg shadow-pink-500/30 transition transform hover:-translate-y-0.5 active:translate-y-0 flex items-center justify-center gap-2 cursor-pointer">
+        <span>Open Birthday Surprise</span>
+        <span>✨</span>
+      </button>
+      <p class="text-xs text-pink-600/75 mt-3">
+        Good to be this old ahh, tap the button
+      </p>
+    </div>
+  </div>
+
+  <!-- Top Header Bar -->
+  <header
+    class="h-14 sm:h-16 px-4 sm:px-6 flex items-center justify-between border-b border-pink-200/80 bg-white/80 backdrop-blur-md z-30 shrink-0">
+    <div class="flex items-center gap-2.5">
+      <span
+        class="w-8 h-8 rounded-full bg-pink-100 border border-pink-300 flex items-center justify-center text-base">🎀</span>
+      <span class="font-display font-bold text-base sm:text-lg text-pink-950">Aastha <span
+          class="text-pink-500">23</span></span>
+    </div>
+
+    <!-- Active Mode Indicator Badge -->
+    <div id="mode-badge"
+      class="px-3 py-1 rounded-full bg-pink-100/90 border border-pink-200 text-pink-700 text-xs font-semibold tracking-wide flex items-center gap-1.5 shadow-sm">
+      <span>🎂 Make a Wish</span>
+    </div>
+
+    <div class="flex items-center gap-2">
+      <!-- Invert Mode Toggle Button -->
+      <button id="header-invert-btn" type="button" title="Toggle Invert Mode"
+        class="px-3 py-1.5 rounded-xl bg-zinc-900 hover:bg-black text-pink-200 border border-zinc-700 text-xs font-semibold shadow-sm transition flex items-center gap-1.5 cursor-pointer shrink-0">
+        <i id="header-invert-icon" data-lucide="disc" class="w-3.5 h-3.5 text-purple-400"></i>
+        <span id="header-invert-text">press button</span>
+      </button>
+
+      <!-- Back to Cake Button (visible in photo mode) -->
+      <button id="back-to-cake-btn" type="button"
+        class="hidden px-3 py-1.5 rounded-xl bg-pink-50 hover:bg-pink-100 text-pink-700 border border-pink-200 text-xs font-semibold transition cursor-pointer flex items-center gap-1">
+        <i data-lucide="cake" class="w-3.5 h-3.5 text-pink-500"></i>
+        <span class="hidden sm:inline">Cake Table</span>
+      </button>
+      <!-- Confetti Button -->
+      <button id="header-confetti-btn" type="button"
+        class="px-3.5 py-1.5 rounded-xl bg-pink-500 hover:bg-pink-600 text-white text-xs font-semibold shadow-sm transition flex items-center gap-1.5 cursor-pointer shrink-0">
+        <i data-lucide="sparkles" class="w-3.5 h-3.5"></i>
+        <span>Celebrate</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Main Viewport Area (Zero Scrolling) -->
+  <main class="flex-1 relative overflow-hidden flex items-center justify-center p-3 sm:p-5">
+
+    <!-- ========================================================= -->
+    <!-- SCENE 1: THE BIRTHDAY TABLE (MAKE A WISH & BLOW CANDLES)  -->
+    <!-- ========================================================= -->
+    <div id="cake-scene"
+      class="w-full max-w-xl mx-auto flex flex-col items-center justify-center text-center transition-all duration-700 ease-out">
+      <div class="glass-card rounded-3xl p-5 sm:p-8 w-full relative overflow-hidden shadow-2xl">
+        <div class="h-3 gingham-strip w-full absolute top-0 left-0 right-0"></div>
+
+        <!-- Floating Kitty Stickers -->
+        <div
+          class="hidden sm:block absolute top-6 -left-2 w-16 h-16 rounded-2xl overflow-hidden border-2 border-white shadow-md bg-white rotate-[-12deg] animate-float pointer-events-none">
+          <img src="./assets/hk-wink.jpg" alt="Hello Kitty" class="w-full h-full object-cover" />
+        </div>
+        <div
+          class="hidden sm:block absolute top-8 -right-2 w-16 h-16 rounded-2xl overflow-hidden border-2 border-white shadow-md bg-white rotate-[12deg] animate-float pointer-events-none"
+          style="animation-delay: -2s;">
+          <img src="./assets/hk-cake.jpg" alt="Cake" class="w-full h-full object-cover" />
+        </div>
+
+        <div class="pt-2 mb-4">
+          <span
+            class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-rose-100 text-rose-700 text-xs font-semibold uppercase tracking-wider mb-2">
+            🎂 old 23 ahh
+          </span>
+          <h2 class="font-display text-3xl sm:text-4xl font-bold text-pink-950">
+            Happy Birthday, <span class="text-pink-500">Aastha!</span>
+          </h2>
+          <p id="wish-status" class="text-xs sm:text-sm text-pink-800/80 mt-1 max-w-md mx-auto">
+            blow the candles man !
+          </p>
+        </div>
+
+        <!-- Interactive 23 Cake on Table -->
+        <div id="cake-interactive" class="relative mx-auto w-60 sm:w-68 pt-10 pb-2 cursor-pointer select-none group"
+          role="button" tabindex="0" aria-label="Birthday cake with 23 candles">
+          <!-- Numeral Candles "2" and "3" -->
+          <div class="flex justify-center items-end gap-6 mb-[-6px] relative z-10">
+            <!-- Candle 2 -->
+            <div class="flex flex-col items-center relative">
+              <div class="candle-smoke hidden absolute -top-5 text-base pointer-events-none select-none">💨</div>
+              <div
+                class="candle-flame w-4 h-6 rounded-full bg-gradient-to-t from-orange-500 via-amber-300 to-yellow-100 shadow-[0_0_14px_rgba(251,191,36,0.9)] flame mb-1">
+              </div>
+              <div class="w-1 h-2 bg-pink-950 rounded-full"></div>
+              <div
+                class="w-9 h-11 rounded-xl bg-gradient-to-b from-pink-400 to-pink-500 border-2 border-white shadow-md flex items-center justify-center font-display font-bold text-xl text-white">
+                2
+              </div>
+            </div>
+            <!-- Candle 3 -->
+            <div class="flex flex-col items-center relative">
+              <div class="candle-smoke hidden absolute -top-5 text-base pointer-events-none select-none">💨</div>
+              <div
+                class="candle-flame w-4 h-6 rounded-full bg-gradient-to-t from-orange-500 via-amber-300 to-yellow-100 shadow-[0_0_14px_rgba(251,191,36,0.9)] flame mb-1">
+              </div>
+              <div class="w-1 h-2 bg-pink-950 rounded-full"></div>
+              <div
+                class="w-9 h-11 rounded-xl bg-gradient-to-b from-pink-400 to-pink-500 border-2 border-white shadow-md flex items-center justify-center font-display font-bold text-xl text-white">
+                3
+              </div>
+            </div>
+          </div>
+
+          <!-- Top Tier -->
+          <div
+            class="mx-auto w-40 h-14 bg-gradient-to-b from-pink-200 to-pink-300 rounded-t-2xl border-2 border-white shadow-inner relative overflow-hidden">
+            <div class="absolute top-0 left-0 right-0 h-4 bg-white/95 rounded-b-xl"></div>
+            <div class="flex justify-around pt-1 relative z-10 text-xs">
+              <span>🍓</span><span>🎀</span><span>🍓</span>
+            </div>
+          </div>
+          <!-- Bottom Tier -->
+          <div
+            class="mx-auto w-56 h-16 bg-gradient-to-b from-pink-300 to-rose-400 rounded-t-2xl rounded-b-xl border-2 border-white shadow-lg relative overflow-hidden">
+            <div class="absolute top-0 left-0 right-0 h-5 bg-white/95 rounded-b-2xl"></div>
+            <div class="flex justify-around pt-6 text-white/90 text-xs font-semibold tracking-widest uppercase">
+              <span>★ Asterxia 23 ★</span>
+            </div>
+          </div>
+          <!-- Cake Plate / Table Surface -->
+          <div class="mx-auto w-64 h-3.5 bg-pink-100 border border-pink-300 rounded-full shadow-md mt-1"></div>
+        </div>
+
+        <!-- Blowing Trigger -->
+        <div class="mt-5 flex flex-col items-center gap-2">
+          <button id="blow-candles-btn" type="button"
+            class="w-full sm:w-auto px-8 py-3.5 rounded-2xl bg-gradient-to-r from-pink-500 via-rose-500 to-pink-500 hover:from-pink-600 hover:to-rose-600 text-white font-semibold text-sm shadow-xl shadow-pink-500/30 transition transform hover:scale-105 active:scale-95 cursor-pointer flex items-center justify-center gap-2">
+            <i data-lucide="wind" class="w-4 h-4"></i>
+            <span>Blow Out Candles</span>
+            <span>💨</span>
+          </button>
+          <span class="text-[11px] text-pink-600/80 font-medium">
+            ✨well well well
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ========================================================= -->
+    <!-- SCENE 2: RETRO PINK OS AESTHETIC WINDOW (GOOD VIBES ♡)    -->
+    <!-- ========================================================= -->
+    <div id="photo-scene"
+      class="hidden opacity-0 scale-95 pointer-events-none w-full max-w-5xl lg:max-w-6xl mx-auto h-full max-h-[86vh] flex flex-col justify-center items-center transition-all duration-700 ease-out px-1 sm:px-3">
+
+      <!-- Main Stage Flex: Desktop Folders on left + Retro Window in Center -->
+      <div class="w-full flex items-center justify-center gap-3 sm:gap-6 my-auto relative">
+
+        <!-- Left Desktop Folders (Matching Inspo 2) -->
+        <div class="hidden lg:flex flex-col gap-2.5 z-20 shrink-0">
+          <div class="text-[10px] font-bold text-pink-700/80 uppercase tracking-widest px-1 font-mono">
+            📁 Albums
+          </div>
+          <button id="folder-btn-0" type="button"
+            class="desktop-folder-btn flex items-center gap-2 px-3 py-2 rounded-xl bg-white/90 border-2 border-pink-200 text-pink-900 text-xs font-semibold shadow-sm cursor-pointer hover:bg-pink-50">
+            <span class="text-base text-rose-500">♡</span>
+            <span>Hiiiiiiiiiii</span>
+          </button>
+          <button id="folder-btn-1" type="button"
+            class="desktop-folder-btn flex items-center gap-2 px-3 py-2 rounded-xl bg-white/90 border-2 border-pink-200 text-pink-900 text-xs font-semibold shadow-sm cursor-pointer hover:bg-pink-50">
+            <span class="text-base text-amber-500">★</span>
+            <span>Big ahh poop</span>
+          </button>
+          <button id="folder-btn-2" type="button"
+            class="desktop-folder-btn flex items-center gap-2 px-3 py-2 rounded-xl bg-white/90 border-2 border-pink-200 text-pink-900 text-xs font-semibold shadow-sm cursor-pointer hover:bg-pink-50">
+            <span class="text-base text-pink-600">🐾</span>
+            <span> Wrong number</span>
+          </button>
+          <button id="folder-btn-3" type="button"
+            class="desktop-folder-btn flex items-center gap-2 px-3 py-2 rounded-xl bg-white/90 border-2 border-pink-200 text-pink-900 text-xs font-semibold shadow-sm cursor-pointer hover:bg-pink-50">
+            <span class="text-base text-pink-500">🎀</span>
+            <span> Vintage like yo age </span>
+          </button>
+          <button id="folder-btn-4" type="button"
+            class="desktop-folder-btn flex items-center gap-2 px-3 py-2 rounded-xl bg-white/90 border-2 border-pink-200 text-pink-900 text-xs font-semibold shadow-sm cursor-pointer hover:bg-pink-50">
+            <span class="text-base text-purple-600">👑</span>
+            <span> 23 old ahh</span>
+          </button>
+        </div>
+
+        <!-- The Hero Retro Pink OS Window ("Good Vibes ♡" - Inspo 1 & 2) -->
+        <div class="retro-window w-full max-w-3xl lg:max-w-4xl flex flex-col relative shadow-2xl">
+
+          <!-- Cute White Peeking Cat on top border (Exact to Inspo 2!) -->
+          <div class="absolute -top-6 sm:-top-7 right-8 sm:right-14 z-30 pointer-events-none select-none">
+            <svg class="w-16 h-8 text-pink-400" viewBox="0 0 64 32">
+              <path
+                d="M12 32 C12 18, 16 10, 24 10 C27 4, 30 2, 33 8 C36 8, 44 8, 47 8 C50 2, 53 4, 56 10 C64 10, 68 18, 68 32 Z"
+                fill="#ffffff" stroke="#ff4081" stroke-width="2.5" />
+              <polygon points="26,11 31,16 25,18" fill="#fbcfe8" />
+              <polygon points="54,11 49,16 55,18" fill="#fbcfe8" />
+              <path d="M30 18 Q33 16 36 18" fill="none" stroke="#be185d" stroke-width="2" stroke-linecap="round" />
+              <path d="M44 18 Q47 16 50 18" fill="none" stroke="#be185d" stroke-width="2" stroke-linecap="round" />
+              <circle cx="40" cy="20" r="1.5" fill="#ff4081" />
+              <!-- Cat paws hanging over title bar -->
+              <ellipse cx="28" cy="31" rx="4.5" ry="3.5" fill="#ffffff" stroke="#ff4081" stroke-width="2" />
+              <ellipse cx="52" cy="31" rx="4.5" ry="3.5" fill="#ffffff" stroke="#ff4081" stroke-width="2" />
+            </svg>
+          </div>
+
+          <!-- Window Title Bar -->
+          <div
+            class="retro-title-bar px-3 sm:px-4 py-2 flex items-center justify-between shrink-0 select-none border-b-2 border-pink-500">
+            <div class="flex items-center gap-2 min-w-0">
+              <span class="text-sm shrink-0">🐱</span>
+              <span class="font-bold text-xs sm:text-sm tracking-wide text-white font-mono drop-shadow-xs truncate">
+                Aastha Pazzta
+              </span>
+            </div>
+            <div class="flex items-center gap-1.5 shrink-0">
+              <button id="retro-minimize-btn" type="button" aria-label="Minimize" class="retro-win-btn">-</button>
+              <button id="retro-maximize-btn" type="button" aria-label="Maximize" class="retro-win-btn">□</button>
+              <button id="retro-close-btn" type="button" aria-label="Close" class="retro-win-btn">✕</button>
+            </div>
+          </div>
+
+          <!-- Window Menu Bar (Matching Inspo 1 & 2) -->
+          <div
+            class="px-3 sm:px-4 py-1.5 bg-pink-100/95 border-b border-pink-200 text-[11px] sm:text-xs font-semibold text-pink-900/90 flex items-center justify-between shrink-0">
+            <div class="flex items-center gap-3 sm:gap-5 font-mono">
+              <span class="hover:text-pink-600 cursor-pointer">File</span>
+              <span class="hover:text-pink-600 cursor-pointer">Edit</span>
+              <span class="hover:text-pink-600 cursor-pointer">View</span>
+              <span class="hover:text-pink-600 cursor-pointer">Image</span>
+              <span class="hover:text-pink-600 cursor-pointer">Help</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <button id="toggle-slideshow-btn" type="button"
+                class="px-2.5 py-0.5 rounded-md bg-white border border-pink-300 hover:bg-pink-50 text-pink-700 font-bold transition flex items-center gap-1 cursor-pointer">
+                <i id="slideshow-icon" data-lucide="pause" class="w-3 h-3"></i>
+                <span id="slideshow-text">Pause (3s)</span>
+              </button>
+              <span id="card-step-badge"
+                class="px-2 py-0.5 rounded-md bg-pink-200/90 border border-pink-300 text-pink-800 font-bold font-mono text-[10px]">
+                Photo 1 / 5
+              </span>
+            </div>
+          </div>
+
+          <!-- Window Inner Canvas (Retro Pink Grid Background - Inspo 1!) -->
+          <div
+            class="retro-pink-grid w-full relative flex items-center justify-center p-3 sm:p-5 overflow-hidden min-h-[350px] sm:min-h-[430px] lg:min-h-[460px]">
+
+            <!-- Left Arrow Nav -->
+            <button id="prev-card-btn" type="button" aria-label="Previous photo"
+              class="absolute left-2 sm:left-4 z-20 w-9 h-9 sm:w-11 sm:h-11 rounded-full bg-white/95 border-2 border-pink-300 text-pink-800 shadow-xl flex items-center justify-center hover:bg-pink-50 hover:scale-105 active:scale-95 transition cursor-pointer">
+              <i data-lucide="chevron-left" class="w-5 h-5"></i>
+            </button>
+
+            <!-- THE BIG HERO PHOTO (Spacious, Premium, Crisp, Never Cropped) -->
+            <div id="retro-photo-container"
+              class="relative z-10 flex flex-col items-center justify-center max-w-full h-full">
+              <!-- Soft ambient back-glow behind photo -->
+              <img id="retro-ambient-bg" src="./assets/aastha-1.jpg" alt=""
+                class="absolute inset-0 w-full h-full object-cover blur-2xl opacity-30 scale-105 pointer-events-none" />
+
+              <!-- High-Res Crisp Full Photo Frame -->
+              <div
+                class="relative p-2 sm:p-3 rounded-2xl bg-white border-2 border-pink-200 shadow-2xl flex items-center justify-center">
+                <img id="retro-window-photo" src="./assets/aastha-1.jpg" alt="Aastha"
+                  class="max-h-[40vh] sm:max-h-[47vh] lg:max-h-[52vh] max-w-full w-auto h-auto object-contain rounded-xl select-none transition-all duration-500 transform scale-100" />
+                <!-- Corner Hello Kitty Stamp -->
+                <div
+                  class="absolute -top-3 -right-3 w-10 h-10 rounded-xl overflow-hidden border-2 border-white shadow-md bg-white rotate-6 pointer-events-none">
+                  <img id="retro-photo-sticker" src="./assets/hk-wink.jpg" alt="Kitty"
+                    class="w-full h-full object-cover" />
+                </div>
+              </div>
+            </div>
+
+            <!-- Right Arrow Nav -->
+            <button id="next-card-btn" type="button" aria-label="Next photo"
+              class="absolute right-2 sm:right-4 z-20 w-9 h-9 sm:w-11 sm:h-11 rounded-full bg-white/95 border-2 border-pink-300 text-pink-800 shadow-xl flex items-center justify-center hover:bg-pink-50 hover:scale-105 active:scale-95 transition cursor-pointer">
+              <i data-lucide="chevron-right" class="w-5 h-5"></i>
+            </button>
+          </div>
+
+          <!-- Window Retro Status / Caption Bar (Bottom) -->
+          <div
+            class="px-3 sm:px-4 py-2 bg-white border-t-2 border-pink-200 flex flex-col sm:flex-row items-center justify-between gap-1.5 shrink-0">
+            <div class="text-center sm:text-left min-w-0">
+              <div class="flex items-center justify-center sm:justify-start gap-2">
+                <span id="active-card-rank-badge"
+                  class="px-2 py-0.5 rounded-full text-[11px] font-bold bg-pink-100 text-pink-700 border border-pink-200">
+                  Photo 1
+                </span>
+                <h3 id="active-card-title" class="font-display font-bold text-sm sm:text-base text-pink-950 truncate">
+                  Birthday Girl Energy ✨
+                </h3>
+              </div>
+              <p id="active-card-desc" class="text-[11px] sm:text-xs text-pink-800/85 truncate">
+                Happyyyyyyyyyy Birthhhdaaayyyyyyyyyyyyyy
+              </p>
+            </div>
+
+            <!-- Bottom Actions -->
+            <div class="flex items-center gap-2 shrink-0">
+              <button id="scene-invert-btn" type="button"
+                class="flex items-center gap-1 px-3 py-1 rounded-lg bg-zinc-900 hover:bg-black text-pink-200 transition cursor-pointer font-semibold text-xs shadow-xs">
+                <i data-lucide="disc" class="w-3 h-3 text-purple-400"></i>
+                <span>press button</span>
+              </button>
+              <button id="replay-candles-btn" type="button"
+                class="flex items-center gap-1 px-3 py-1 rounded-lg bg-pink-100 hover:bg-pink-200 text-pink-800 transition cursor-pointer font-semibold text-xs border border-pink-200">
+                <i data-lucide="flame" class="w-3.5 h-3.5 text-orange-500"></i>
+                <span>Relight</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Mobile Folder Row (visible on smaller screens) -->
+      <div class="flex lg:hidden items-center justify-center gap-1.5 mt-2 overflow-x-auto max-w-full px-2 py-1">
+        <button id="mob-folder-0" type="button"
+          class="desktop-folder-btn px-2.5 py-1 rounded-lg bg-white/95 border border-pink-200 text-pink-900 text-[11px] font-semibold whitespace-nowrap">♡
+          01 Lookbook</button>
+        <button id="mob-folder-1" type="button"
+          class="desktop-folder-btn px-2.5 py-1 rounded-lg bg-white/95 border border-pink-200 text-pink-900 text-[11px] font-semibold whitespace-nowrap">★
+          02 Golden</button>
+        <button id="mob-folder-2" type="button"
+          class="desktop-folder-btn px-2.5 py-1 rounded-lg bg-white/95 border border-pink-200 text-pink-900 text-[11px] font-semibold whitespace-nowrap">🐾
+          03 Love</button>
+        <button id="mob-folder-3" type="button"
+          class="desktop-folder-btn px-2.5 py-1 rounded-lg bg-white/95 border border-pink-200 text-pink-900 text-[11px] font-semibold whitespace-nowrap">🎀
+          04 Vintage</button>
+        <button id="mob-folder-4" type="button"
+          class="desktop-folder-btn px-2.5 py-1 rounded-lg bg-white/95 border border-pink-200 text-pink-900 text-[11px] font-semibold whitespace-nowrap">👑
+          05 Finale</button>
+      </div>
+    </div>
+
+    <!-- ========================================================= -->
+    <!-- SCENE 3: INVERT MODE SCENE (PHOTO & SONG FROM invert/)   -->
+    <!-- ========================================================= -->
+    <div id="invert-scene"
+      class="hidden opacity-0 scale-95 pointer-events-none w-full max-w-xl sm:max-w-2xl mx-auto h-full max-h-[86vh] flex flex-col justify-center items-center transition-all duration-700 ease-out px-2 py-1">
+      <div
+        class="rounded-3xl p-4 sm:p-6 w-full max-w-lg bg-zinc-950/92 backdrop-blur-xl text-white border-2 border-purple-500/50 shadow-2xl relative overflow-hidden flex flex-col items-center">
+        <!-- Ambient moody glow behind -->
+        <div class="absolute -top-20 -left-20 w-44 h-44 bg-purple-600/30 rounded-full blur-3xl pointer-events-none">
+        </div>
+        <div class="absolute -bottom-20 -right-20 w-44 h-44 bg-pink-600/30 rounded-full blur-3xl pointer-events-none">
+        </div>
+
+        <!-- Center Invert Photo Showcase Frame: Entire photo fits with zero cropping -->
+        <div
+          class="w-full flex-1 min-h-[200px] max-h-[48vh] sm:max-h-[50vh] rounded-2xl overflow-hidden bg-zinc-900/90 border border-purple-500/40 p-2 sm:p-3 flex items-center justify-center relative group shadow-inner z-10">
+          <!-- Ambient soft blur behind photo -->
+          <img src="./invert/52349.jpg" alt=""
+            class="absolute inset-0 w-full h-full object-cover blur-2xl opacity-40 scale-110 pointer-events-none" />
+
+          <!-- The WHOLE Photo (object-contain, 100% visible, never cropped) -->
+          <img id="invert-photo-img" src="./invert/52349.jpg" alt="Invert Photo (52349.jpg)"
+            class="relative z-10 max-h-full max-w-full w-auto h-auto object-contain rounded-xl shadow-2xl border border-white/20 select-none transition transform duration-300 group-hover:scale-[1.01]" />
+        </div>
+
+        <!-- Invert Track Caption -->
+        <div class="text-center mt-2.5 space-y-0.5 w-full px-2 z-10 shrink-0">
+          <h3
+            class="font-display text-xl sm:text-2xl text-white font-bold leading-tight flex items-center justify-center gap-2">
+            <span>Want You</span>
+            <span
+              class="text-xs px-2 py-0.5 rounded-full bg-purple-900/80 text-purple-300 border border-purple-700 font-sans">Clara
+              La San</span>
+          </h3>
+          <p class="text-xs text-zinc-300/85 max-w-md mx-auto leading-relaxed">
+            🎵 Clara La San - Want You Visualiser · Invert Collection
+          </p>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="flex items-center justify-center gap-3 mt-3 z-10 shrink-0">
+          <button id="invert-play-toggle-btn" type="button"
+            class="px-4 py-2 rounded-xl bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-500 hover:to-pink-500 text-white font-semibold text-xs sm:text-sm shadow-lg transition flex items-center gap-1.5 cursor-pointer">
+            <i id="invert-play-btn-icon" data-lucide="pause" class="w-4 h-4"></i>
+            <span id="invert-play-btn-text">Pause Song</span>
+          </button>
+          <button id="exit-invert-btn" type="button"
+            class="px-4 py-2 rounded-xl bg-zinc-800 hover:bg-zinc-700 text-zinc-200 border border-zinc-600 font-semibold text-xs sm:text-sm transition flex items-center gap-1.5 cursor-pointer">
+            <i data-lucide="arrow-left" class="w-4 h-4"></i>
+            <span>Home Page 🎀</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Bottom Floating Audio Player Bar -->
+  <footer
+    class="h-14 sm:h-16 px-4 sm:px-6 flex items-center justify-between border-t border-pink-200/80 bg-white/90 backdrop-blur-md z-30 shrink-0">
+    <div class="flex items-center gap-3 min-w-0">
+      <!-- Mini Spinning Disc / Music Icon -->
+      <div id="mini-vinyl"
+        class="w-9 h-9 rounded-full bg-gradient-to-br from-zinc-900 to-pink-950 border border-pink-300 flex items-center justify-center shrink-0 shadow-sm vinyl-paused overflow-hidden">
+        <img src="./assets/aastha-3.jpg" alt="Track Art" class="w-5 h-5 rounded-full object-cover" />
+      </div>
+      <div class="min-w-0">
+        <p id="footer-track-title" class="text-xs sm:text-sm font-bold text-pink-950 truncate">
+          Happy Birthday (Instrumental)
+        </p>
+        <p id="footer-track-sub" class="text-[11px] text-pink-600 truncate">
+          Blow candles for "Her Way" by PND 🎶
+        </p>
+      </div>
+    </div>
+
+    <!-- Play/Pause & Volume -->
+    <div class="flex items-center gap-3">
+      <input id="bgm-volume" type="range" min="0" max="1" step="0.05" value="0.7" aria-label="Music volume"
+        class="w-16 sm:w-20 accent-pink-500 cursor-pointer hidden xs:block" />
+      <button id="footer-play-btn" type="button" aria-label="Play or pause celebration music"
+        class="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-gradient-to-br from-pink-500 to-rose-500 text-white flex items-center justify-center shadow-md hover:scale-105 active:scale-95 transition cursor-pointer shrink-0">
+        <i id="footer-play-icon" data-lucide="play" class="w-4 h-4 sm:w-5 sm:h-5"></i>
+      </button>
+    </div>
+  </footer>
+
+  <!-- Toast Notification -->
+  <div id="toast"
+    class="fixed top-16 right-4 z-40 hidden px-4 py-3 rounded-2xl bg-pink-950 text-white text-xs sm:text-sm font-medium shadow-2xl transition">
+  </div>
+
+  <!-- Audio Elements -->
+  <audio id="herway-audio" src="./Her%20Way%20-%20PARTYNEXTDOOR.mp3" preload="auto"></audio>
+  <audio id="invert-audio" src="./invert/Clara%20La%20San%20-%20Want%20You%20Visualiser.mp3" preload="auto"></audio>
+
+  <script>
+    // Lucide Icons initialization
+    if (window.lucide) {
+      window.lucide.createIcons();
+    }
+
+    // Toast helper
+    function showToast(msg) {
+      const toast = document.getElementById('toast');
+      toast.textContent = msg;
+      toast.classList.remove('hidden');
+      clearTimeout(window.__toastTimer);
+      window.__toastTimer = setTimeout(() => {
+        toast.classList.add('hidden');
+      }, 3400);
+    }
+
+    // Confetti burst helper
+    function fireConfetti(count = 90) {
+      if (typeof window.confetti === 'function') {
+        window.confetti({
+          particleCount: count,
+          spread: 80,
+          origin: { y: 0.6 },
+          colors: ['#ff4d94', '#ff85b3', '#ffc2dc', '#ffffff', '#fbbf24', '#f43f5e']
+        });
+      }
+    }
+
+    // =========================================================
+    // Web Audio API: Happy Birthday Synth Chime
+    // =========================================================
+    const NOTES = {
+      C4: 261.63, D4: 293.66, E4: 329.63, F4: 349.23,
+      G4: 392.00, A4: 440.00, Bb4: 466.16, C5: 523.25,
+      D5: 587.33, E5: 659.25, F5: 698.46
+    };
+
+    const MELODY = [
+      [NOTES.C4, 0.75, [NOTES.F4, NOTES.A4]],
+      [NOTES.C4, 0.25, null],
+      [NOTES.D4, 1.0, [NOTES.F4, NOTES.A4]],
+      [NOTES.C4, 1.0, null],
+      [NOTES.F4, 1.0, [NOTES.F4, NOTES.A4]],
+      [NOTES.E4, 2.0, [NOTES.C4, NOTES.G4]],
+      [NOTES.C4, 0.75, [NOTES.C4, NOTES.G4]],
+      [NOTES.C4, 0.25, null],
+      [NOTES.D4, 1.0, [NOTES.C4, NOTES.Bb4]],
+      [NOTES.C4, 1.0, null],
+      [NOTES.G4, 1.0, [NOTES.C4, NOTES.E4]],
+      [NOTES.F4, 2.0, [NOTES.F4, NOTES.A4]],
+      [NOTES.C4, 0.75, [NOTES.F4, NOTES.A4]],
+      [NOTES.C4, 0.25, null],
+      [NOTES.C5, 1.0, [NOTES.F4, NOTES.A4]],
+      [NOTES.A4, 1.0, null],
+      [NOTES.F4, 1.0, [NOTES.Bb4, NOTES.D5]],
+      [NOTES.E4, 1.0, null],
+      [NOTES.D4, 2.0, [NOTES.Bb4, NOTES.D5]],
+      [NOTES.Bb4, 0.75, [NOTES.Bb4, NOTES.D5]],
+      [NOTES.Bb4, 0.25, null],
+      [NOTES.A4, 1.0, [NOTES.F4, NOTES.C5]],
+      [NOTES.F4, 1.0, null],
+      [NOTES.G4, 1.0, [NOTES.C4, NOTES.E4]],
+      [NOTES.F4, 2.5, [NOTES.F4, NOTES.A4]]
+    ];
+
+    let audioCtx = null;
+    let masterGain = null;
+    let isBgmPlaying = false;
+    let stepIndex = 0;
+    let nextNoteTimer = null;
+
+    function ensureAudio() {
+      if (!audioCtx) {
+        const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+        audioCtx = new AudioContextClass();
+        masterGain = audioCtx.createGain();
+        masterGain.gain.value = parseFloat(document.getElementById('bgm-volume').value || '0.7');
+        masterGain.connect(audioCtx.destination);
+      }
+      if (audioCtx.state === 'suspended') {
+        audioCtx.resume();
+      }
+    }
+
+    function playBellNote(freq, durationSec) {
+      if (!audioCtx || !masterGain) return;
+      const now = audioCtx.currentTime;
+      const osc = audioCtx.createOscillator();
+      const overtone = audioCtx.createOscillator();
+      const gain = audioCtx.createGain();
+
+      osc.type = 'sine';
+      osc.frequency.setValueAtTime(freq, now);
+
+      overtone.type = 'triangle';
+      overtone.frequency.setValueAtTime(freq * 2, now);
+
+      const overtoneGain = audioCtx.createGain();
+      overtoneGain.gain.setValueAtTime(0.12, now);
+
+      gain.gain.setValueAtTime(0.001, now);
+      gain.gain.linearRampToValueAtTime(0.25, now + 0.02);
+      gain.gain.exponentialRampToValueAtTime(0.001, now + durationSec + 0.3);
+
+      osc.connect(gain);
+      overtone.connect(overtoneGain);
+      overtoneGain.connect(gain);
+      gain.connect(masterGain);
+
+      osc.start(now);
+      overtone.start(now);
+      osc.stop(now + durationSec + 0.35);
+      overtone.stop(now + durationSec + 0.35);
+    }
+
+    function playPadChord(freqs, durationSec) {
+      if (!audioCtx || !masterGain || !freqs) return;
+      const now = audioCtx.currentTime;
+      freqs.forEach((f) => {
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(f * 0.5, now);
+        gain.gain.setValueAtTime(0.001, now);
+        gain.gain.linearRampToValueAtTime(0.06, now + 0.06);
+        gain.gain.exponentialRampToValueAtTime(0.001, now + durationSec + 0.4);
+        osc.connect(gain);
+        gain.connect(masterGain);
+        osc.start(now);
+        osc.stop(now + durationSec + 0.45);
+      });
+    }
+
+    function scheduleNextStep() {
+      if (!isBgmPlaying) return;
+      const [freq, beats, chord] = MELODY[stepIndex];
+      const beatMs = 460;
+      const durSec = (beats * beatMs) / 1000;
+
+      playBellNote(freq, durSec);
+      if (chord) playPadChord(chord, durSec * 1.5);
+
+      stepIndex = (stepIndex + 1) % MELODY.length;
+      nextNoteTimer = setTimeout(scheduleNextStep, beats * beatMs);
+    }
+
+    function startBgm() {
+      ensureAudio();
+      pauseHerWay();
+      pauseInvert();
+      currentTrack = 'bgm';
+      if (isBgmPlaying) return;
+      isBgmPlaying = true;
+      updateAudioUI();
+      scheduleNextStep();
+    }
+
+    function stopBgm() {
+      isBgmPlaying = false;
+      clearTimeout(nextNoteTimer);
+      updateAudioUI();
+    }
+
+    // =========================================================
+    // Audio Controllers: "Her Way", Clara La San (Invert), & BGM
+    // =========================================================
+    let currentTrack = 'none'; // 'none', 'bgm', 'herway', or 'invert'
+    const herWayAudio = document.getElementById('herway-audio');
+    const invertAudio = document.getElementById('invert-audio');
+
+    function syncVolume(val) {
+      if (herWayAudio) herWayAudio.volume = val;
+      if (invertAudio) invertAudio.volume = val;
+      if (masterGain && audioCtx) {
+        masterGain.gain.setValueAtTime(val, audioCtx.currentTime);
+      }
+    }
+
+    function updateAudioUI() {
+      const isHerWayPlaying = herWayAudio && !herWayAudio.paused && !herWayAudio.ended;
+      const isInvertPlaying = invertAudio && !invertAudio.paused && !invertAudio.ended;
+      const footerPlayIcon = document.getElementById('footer-play-icon');
+      const footerTitle = document.getElementById('footer-track-title');
+      const footerSub = document.getElementById('footer-track-sub');
+      const miniVinyl = document.getElementById('mini-vinyl');
+      const miniVinylImg = miniVinyl?.querySelector('img');
+      const invertPlayBtnIcon = document.getElementById('invert-play-btn-icon');
+      const invertPlayBtnText = document.getElementById('invert-play-btn-text');
+
+      if (currentTrack === 'invert') {
+        footerTitle.textContent = '"Want You" — Clara La San';
+        if (miniVinylImg) miniVinylImg.src = './invert/52349.jpg';
+
+        if (isInvertPlaying) {
+          footerPlayIcon.setAttribute('data-lucide', 'pause');
+          footerSub.textContent = 'Invert Mode · Playing from invert/ 🖤';
+          if (miniVinyl) {
+            miniVinyl.classList.remove('vinyl-paused');
+            miniVinyl.classList.add('vinyl-spinning');
+          }
+          if (invertPlayBtnIcon) invertPlayBtnIcon.setAttribute('data-lucide', 'pause');
+          if (invertPlayBtnText) invertPlayBtnText.textContent = 'Pause Song';
+        } else {
+          footerPlayIcon.setAttribute('data-lucide', 'play');
+          footerSub.textContent = 'Paused · Tap to play';
+          if (miniVinyl) {
+            miniVinyl.classList.remove('vinyl-spinning');
+            miniVinyl.classList.add('vinyl-paused');
+          }
+          if (invertPlayBtnIcon) invertPlayBtnIcon.setAttribute('data-lucide', 'play');
+          if (invertPlayBtnText) invertPlayBtnText.textContent = 'Play Song';
+        }
+      } else if (currentTrack === 'herway') {
+        footerTitle.textContent = '"Her Way" — PARTYNEXTDOOR';
+        if (miniVinylImg) miniVinylImg.src = './assets/aastha-3.jpg';
+
+        if (isHerWayPlaying) {
+          footerPlayIcon.setAttribute('data-lucide', 'pause');
+          footerSub.textContent = 'Aastha\'s Birthday Anthem 🎀';
+          if (miniVinyl) {
+            miniVinyl.classList.remove('vinyl-paused');
+            miniVinyl.classList.add('vinyl-spinning');
+          }
+        } else {
+          footerPlayIcon.setAttribute('data-lucide', 'play');
+          footerSub.textContent = 'Paused · Tap to play';
+          if (miniVinyl) {
+            miniVinyl.classList.remove('vinyl-spinning');
+            miniVinyl.classList.add('vinyl-paused');
+          }
+        }
+      } else if (currentTrack === 'bgm') {
+        footerTitle.textContent = 'Happy Birthday (Instrumental)';
+        if (miniVinylImg) miniVinylImg.src = './assets/aastha-3.jpg';
+
+        if (isBgmPlaying) {
+          footerPlayIcon.setAttribute('data-lucide', 'pause');
+          footerSub.textContent = 'Playing softly in background 🎀';
+          if (miniVinyl) {
+            miniVinyl.classList.remove('vinyl-paused');
+            miniVinyl.classList.add('vinyl-spinning');
+          }
+        } else {
+          footerPlayIcon.setAttribute('data-lucide', 'play');
+          footerSub.textContent = 'Paused · Tap to play';
+          if (miniVinyl) {
+            miniVinyl.classList.remove('vinyl-spinning');
+            miniVinyl.classList.add('vinyl-paused');
+          }
+        }
+      } else {
+        footerTitle.textContent = 'Aastha\'s 23rd Birthday Mix';
+        footerSub.textContent = 'Blow candles for "Her Way" 🎂';
+        footerPlayIcon.setAttribute('data-lucide', 'play');
+        if (miniVinyl) {
+          miniVinyl.classList.remove('vinyl-spinning');
+          miniVinyl.classList.add('vinyl-paused');
+        }
+      }
+
+      if (window.lucide) window.lucide.createIcons();
+    }
+
+    function playHerWay(restart = false) {
+      stopBgm();
+      pauseInvert();
+      currentTrack = 'herway';
+      if (restart || (herWayAudio && herWayAudio.ended)) {
+        if (herWayAudio) herWayAudio.currentTime = 0;
+      }
+      syncVolume(parseFloat(document.getElementById('bgm-volume')?.value || '0.7'));
+      if (herWayAudio) {
+        const promise = herWayAudio.play();
+        if (promise !== undefined) {
+          promise.then(() => {
+            updateAudioUI();
+          }).catch(err => {
+            console.warn('Audio play restricted:', err);
+            updateAudioUI();
+            showToast('Tap play below to start "Her Way" 🎶');
+          });
+        }
+      }
+    }
+
+    function pauseHerWay() {
+      if (herWayAudio && !herWayAudio.paused) {
+        herWayAudio.pause();
+      }
+      updateAudioUI();
+    }
+
+    function toggleHerWay() {
+      if (!herWayAudio) return;
+      if (herWayAudio.paused) {
+        playHerWay(false);
+      } else {
+        pauseHerWay();
+      }
+    }
+
+    function playInvert(restart = false) {
+      stopBgm();
+      pauseHerWay();
+      currentTrack = 'invert';
+      if (restart || (invertAudio && invertAudio.ended)) {
+        if (invertAudio) invertAudio.currentTime = 0;
+      }
+      syncVolume(parseFloat(document.getElementById('bgm-volume')?.value || '0.7'));
+      if (invertAudio) {
+        const promise = invertAudio.play();
+        if (promise !== undefined) {
+          promise.then(() => {
+            updateAudioUI();
+          }).catch(err => {
+            console.warn('Invert audio play restricted:', err);
+            updateAudioUI();
+            showToast('Tap play below to start Clara La San 🎶');
+          });
+        }
+      }
+    }
+
+    function pauseInvert() {
+      if (invertAudio && !invertAudio.paused) {
+        invertAudio.pause();
+      }
+      updateAudioUI();
+    }
+
+    function toggleInvertAudio() {
+      if (!invertAudio) return;
+      if (invertAudio.paused) {
+        playInvert(false);
+      } else {
+        pauseInvert();
+      }
+    }
+
+    // Footer Play/Pause Button
+    document.getElementById('footer-play-btn').addEventListener('click', () => {
+      if (currentTrack === 'invert') {
+        toggleInvertAudio();
+      } else if (currentTrack === 'herway') {
+        toggleHerWay();
+      } else {
+        if (isBgmPlaying) stopBgm();
+        else startBgm();
+      }
+    });
+
+    // Volume Slider
+    document.getElementById('bgm-volume').addEventListener('input', (e) => {
+      syncVolume(parseFloat(e.target.value));
+    });
+
+    if (herWayAudio) {
+      herWayAudio.addEventListener('play', updateAudioUI);
+      herWayAudio.addEventListener('pause', updateAudioUI);
+      herWayAudio.addEventListener('ended', () => {
+        updateAudioUI();
+        showToast('🎀 Reached end of "Her Way" · Tap play to replay!');
+      });
+    }
+
+    if (invertAudio) {
+      invertAudio.addEventListener('play', updateAudioUI);
+      invertAudio.addEventListener('pause', updateAudioUI);
+      invertAudio.addEventListener('ended', () => {
+        updateAudioUI();
+        showToast('🖤 Reached end of "Want You" · Tap play to replay!');
+      });
+    }
+
+    // =========================================================
+    // Photo Story: Playing Card Fan Deck (Every 3 seconds)
+    // =========================================================
+    const cards = [
+      {
+        rank: 'A',
+        suit: '♥',
+        suitColor: 'text-rose-600',
+        badge: 'Ace of Hearts',
+        title: 'Birthday Girl Energy ✨',
+        desc: 'Stepping into Chapter 23 radiant, gorgeous, and glowing.',
+        image: './assets/aastha-1.jpg',
+        sticker: './assets/hk-wink.jpg'
+      },
+      {
+        rank: '2',
+        suit: '♦',
+        suitColor: 'text-rose-600',
+        badge: 'Two of Diamonds',
+        title: 'Golden Hour & Grace 🌸',
+        desc: 'You make every smile and golden hour moment look effortless.',
+        image: './assets/aastha-2.jpg',
+        sticker: './assets/hk-cake.jpg'
+      },
+      {
+        rank: '3',
+        suit: '♠',
+        suitColor: 'text-zinc-900',
+        badge: 'Three of Spades',
+        title: 'Nothing But Love 💖',
+        desc: 'Always real, always sweet, always doing it your way.',
+        image: './assets/aastha-3.jpg',
+        sticker: './assets/hk-bows.jpg'
+      },
+      {
+        rank: '4',
+        suit: '🎀',
+        suitColor: 'text-pink-600',
+        badge: 'Four of Bows',
+        title: 'Vintage & Grace ✨',
+        desc: 'Timeless style, London vintage aesthetic, and effortless elegance.',
+        image: './assets/aastha-4.jpg',
+        sticker: './assets/hk-gift.jpg'
+      },
+      {
+        rank: '5',
+        suit: '♣',
+        suitColor: 'text-zinc-900',
+        badge: 'Five of Clubs · Chapter 23',
+        title: 'Good Vibes & Sweet Smiles 🌸',
+        desc: 'Happy 23rd Birthday, Aastha! Her Way by PARTYNEXTDOOR playing for you.',
+        image: './assets/aastha-5.jpg',
+        sticker: './assets/hk-dots.jpg',
+        isFinale: true
+      }
+    ];
+
+    let currentCardIndex = 0;
+    let cardTimerInterval = null;
+    let isCardPaused = false;
+    let cardProgress = 0;
+    const CARD_DURATION = 3000; // 3 seconds per photo card
+
+    function updateActiveCardVisuals() {
+      const cur = cards[currentCardIndex];
+      if (!cur) return;
+
+      // 1. Update the Big Retro Window Photo with smooth subtle fade
+      const photoEl = document.getElementById('retro-window-photo');
+      const ambientEl = document.getElementById('retro-ambient-bg');
+      const stickerEl = document.getElementById('retro-photo-sticker');
+
+      if (photoEl) {
+        photoEl.style.opacity = '0.35';
+        photoEl.style.transform = 'scale(0.97)';
+        setTimeout(() => {
+          photoEl.src = cur.image;
+          photoEl.alt = cur.title;
+          photoEl.style.opacity = '1';
+          photoEl.style.transform = 'scale(1)';
+        }, 120);
+      }
+      if (ambientEl) ambientEl.src = cur.image;
+      if (stickerEl) stickerEl.src = cur.sticker;
+
+      // 2. Update Desktop & Mobile Folders
+      cards.forEach((_, idx) => {
+        const dFolder = document.getElementById(`folder-btn-${idx}`);
+        const mFolder = document.getElementById(`mob-folder-${idx}`);
+        if (dFolder) {
+          if (idx === currentCardIndex) dFolder.classList.add('folder-active');
+          else dFolder.classList.remove('folder-active');
+        }
+        if (mFolder) {
+          if (idx === currentCardIndex) mFolder.classList.add('folder-active');
+          else mFolder.classList.remove('folder-active');
+        }
+      });
+
+      // 3. Update Status / Caption bar
+      const rankBadge = document.getElementById('active-card-rank-badge');
+      const titleEl = document.getElementById('active-card-title');
+      const descEl = document.getElementById('active-card-desc');
+      const counterBadge = document.getElementById('card-step-badge');
+
+      if (rankBadge) {
+        rankBadge.textContent = `${cur.rank} ${cur.suit}`;
+        rankBadge.className = `px-2 py-0.5 rounded-full text-[11px] font-bold border ${cur.suitColor === 'text-zinc-900' ? 'bg-zinc-100 text-zinc-900 border-zinc-300' : 'bg-pink-100 text-pink-700 border-pink-200'}`;
+      }
+      if (titleEl) titleEl.textContent = cur.title;
+      if (descEl) descEl.textContent = cur.desc;
+      if (counterBadge) counterBadge.textContent = `Photo ${currentCardIndex + 1} / ${cards.length}`;
+    }
+
+    function startCardTimer() {
+      clearInterval(cardTimerInterval);
+      if (isCardPaused) return;
+
+      const intervalMs = 50;
+      const step = (intervalMs / CARD_DURATION) * 100;
+
+      cardTimerInterval = setInterval(() => {
+        if (isCardPaused) return;
+        cardProgress += step;
+        if (cardProgress >= 100) {
+          cardProgress = 0;
+          nextCard();
+        }
+      }, intervalMs);
+    }
+
+    function goToCard(idx) {
+      if (idx < 0) idx = 0;
+      if (idx >= cards.length) idx = cards.length - 1;
+      currentCardIndex = idx;
+      cardProgress = 0;
+      updateActiveCardVisuals();
+      startCardTimer();
+    }
+
+    function nextCard() {
+      if (currentCardIndex < cards.length - 1) {
+        goToCard(currentCardIndex + 1);
+      } else {
+        goToCard(0);
+      }
+    }
+
+    function prevCard() {
+      if (currentCardIndex > 0) {
+        goToCard(currentCardIndex - 1);
+      } else {
+        goToCard(cards.length - 1);
+      }
+    }
+
+    function toggleCardTimer() {
+      isCardPaused = !isCardPaused;
+      const icon = document.getElementById('slideshow-icon');
+      const text = document.getElementById('slideshow-text');
+      if (isCardPaused) {
+        if (icon) icon.setAttribute('data-lucide', 'play');
+        if (text) text.textContent = 'Auto (3s)';
+        showToast('⏸️ Photo slideshow paused — tap play to resume');
+      } else {
+        if (icon) icon.setAttribute('data-lucide', 'pause');
+        if (text) text.textContent = 'Pause (3s)';
+        startCardTimer();
+      }
+      if (window.lucide) window.lucide.createIcons();
+    }
+
+    document.getElementById('prev-card-btn')?.addEventListener('click', prevCard);
+    document.getElementById('next-card-btn')?.addEventListener('click', nextCard);
+    document.getElementById('toggle-slideshow-btn')?.addEventListener('click', toggleCardTimer);
+
+    // Desktop & Mobile folder buttons
+    cards.forEach((_, idx) => {
+      document.getElementById(`folder-btn-${idx}`)?.addEventListener('click', () => goToCard(idx));
+      document.getElementById(`mob-folder-${idx}`)?.addEventListener('click', () => goToCard(idx));
+    });
+
+    // Window controls (- □ ✕)
+    document.getElementById('retro-minimize-btn')?.addEventListener('click', toggleCardTimer);
+    document.getElementById('retro-maximize-btn')?.addEventListener('click', () => {
+      fireConfetti(90);
+      showToast('🎀 Maximizing good vibes! ✨');
+    });
+    document.getElementById('retro-close-btn')?.addEventListener('click', relightCandles);
+
+    // Keyboard navigation
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight') nextCard();
+      if (e.key === 'ArrowLeft') prevCard();
+      if (e.key === ' ') {
+        e.preventDefault();
+        toggleCardTimer();
+      }
+    });
+
+    // =========================================================
+    // Scene Transitions: Table -> Photo Story
+    // =========================================================
+    let candlesLit = true;
+    const flames = document.querySelectorAll('.candle-flame');
+    const blowBtn = document.getElementById('blow-candles-btn');
+
+    function showPhotoScene() {
+      const cakeScene = document.getElementById('cake-scene');
+      const photoScene = document.getElementById('photo-scene');
+      const invertScene = document.getElementById('invert-scene');
+      const modeBadge = document.getElementById('mode-badge');
+      const backToCakeBtn = document.getElementById('back-to-cake-btn');
+
+      if (invertScene) {
+        invertScene.classList.add('opacity-0', 'scale-95', 'pointer-events-none');
+        invertScene.classList.remove('opacity-100', 'scale-100');
+        setTimeout(() => invertScene.classList.add('hidden'), 300);
+      }
+
+      cakeScene.classList.add('opacity-0', 'scale-95', 'pointer-events-none');
+      cakeScene.classList.remove('opacity-100', 'scale-100');
+
+      setTimeout(() => {
+        cakeScene.classList.add('hidden');
+        photoScene.classList.remove('hidden');
+        setTimeout(() => {
+          photoScene.classList.remove('opacity-0', 'scale-95', 'pointer-events-none');
+          photoScene.classList.add('opacity-100', 'scale-100', 'pointer-events-auto');
+          goToCard(0);
+        }, 50);
+      }, 400);
+
+      if (modeBadge) {
+        modeBadge.innerHTML = '<span>🐱 Good Vibes · Chapter 23</span>';
+      }
+      if (backToCakeBtn) {
+        backToCakeBtn.classList.remove('hidden');
+      }
+    }
+
+    function showCakeScene() {
+      clearInterval(cardTimerInterval);
+      const cakeScene = document.getElementById('cake-scene');
+      const photoScene = document.getElementById('photo-scene');
+      const invertScene = document.getElementById('invert-scene');
+      const modeBadge = document.getElementById('mode-badge');
+      const backToCakeBtn = document.getElementById('back-to-cake-btn');
+
+      if (invertScene) {
+        invertScene.classList.add('opacity-0', 'scale-95', 'pointer-events-none');
+        invertScene.classList.remove('opacity-100', 'scale-100');
+        setTimeout(() => invertScene.classList.add('hidden'), 300);
+      }
+
+      photoScene.classList.add('opacity-0', 'scale-95', 'pointer-events-none');
+      photoScene.classList.remove('opacity-100', 'scale-100');
+
+      setTimeout(() => {
+        photoScene.classList.add('hidden');
+        cakeScene.classList.remove('hidden');
+        setTimeout(() => {
+          cakeScene.classList.remove('opacity-0', 'scale-95', 'pointer-events-none');
+          cakeScene.classList.add('opacity-100', 'scale-100');
+        }, 50);
+      }, 400);
+
+      if (modeBadge) {
+        modeBadge.innerHTML = '<span>🎂 Birthday Table · Make a Wish</span>';
+      }
+      if (backToCakeBtn) {
+        backToCakeBtn.classList.add('hidden');
+      }
+    }
+
+    // =========================================================
+    // Invert Mode Handler (Shows photo & plays song from invert/)
+    // =========================================================
+    let isInvertMode = false;
+    let sceneBeforeInvert = 'cake';
+
+    function showInvertScene() {
+      const cakeScene = document.getElementById('cake-scene');
+      const photoScene = document.getElementById('photo-scene');
+      const invertScene = document.getElementById('invert-scene');
+      const modeBadge = document.getElementById('mode-badge');
+      const headerInvertText = document.getElementById('header-invert-text');
+      const headerInvertIcon = document.getElementById('header-invert-icon');
+      const headerInvertBtn = document.getElementById('header-invert-btn');
+
+      if (photoScene && !photoScene.classList.contains('hidden')) {
+        sceneBeforeInvert = 'photo';
+      } else {
+        sceneBeforeInvert = 'cake';
+      }
+
+      clearInterval(cardTimerInterval);
+
+      if (cakeScene) {
+        cakeScene.classList.add('opacity-0', 'scale-95', 'pointer-events-none');
+        cakeScene.classList.remove('opacity-100', 'scale-100');
+        setTimeout(() => cakeScene.classList.add('hidden'), 300);
+      }
+      if (photoScene) {
+        photoScene.classList.add('opacity-0', 'scale-95', 'pointer-events-none');
+        photoScene.classList.remove('opacity-100', 'scale-100');
+        setTimeout(() => photoScene.classList.add('hidden'), 300);
+      }
+
+      setTimeout(() => {
+        if (invertScene) {
+          invertScene.classList.remove('hidden');
+          setTimeout(() => {
+            invertScene.classList.remove('opacity-0', 'scale-95', 'pointer-events-none');
+            invertScene.classList.add('opacity-100', 'scale-100', 'pointer-events-auto');
+          }, 50);
+        }
+        playInvert(true);
+      }, 320);
+
+      isInvertMode = true;
+
+      if (modeBadge) {
+        modeBadge.innerHTML = '<span>☯️ Invert Mode · Want You</span>';
+      }
+      if (headerInvertText) headerInvertText.textContent = 'Normal 🎀';
+      if (headerInvertIcon) headerInvertIcon.setAttribute('data-lucide', 'sparkles');
+      if (headerInvertBtn) {
+        headerInvertBtn.classList.remove('bg-zinc-900', 'border-zinc-700');
+        headerInvertBtn.classList.add('bg-pink-600', 'border-pink-400');
+      }
+
+      showToast('☯️ Invert Mode: Playing Clara La San & showing invert/ photo 🖤');
+      if (window.lucide) window.lucide.createIcons();
+    }
+
+    function exitInvertScene() {
+      const invertScene = document.getElementById('invert-scene');
+      const headerInvertText = document.getElementById('header-invert-text');
+      const headerInvertIcon = document.getElementById('header-invert-icon');
+      const headerInvertBtn = document.getElementById('header-invert-btn');
+
+      pauseInvert();
+
+      if (invertScene) {
+        invertScene.classList.add('opacity-0', 'scale-95', 'pointer-events-none');
+        invertScene.classList.remove('opacity-100', 'scale-100');
+        setTimeout(() => invertScene.classList.add('hidden'), 300);
+      }
+
+      setTimeout(() => {
+        if (sceneBeforeInvert === 'photo') {
+          showPhotoScene();
+          if (!candlesLit) playHerWay(false);
+        } else {
+          showCakeScene();
+          if (candlesLit) startBgm();
+        }
+      }, 320);
+
+      isInvertMode = false;
+
+      if (headerInvertText) headerInvertText.textContent = 'press button';
+      if (headerInvertIcon) headerInvertIcon.setAttribute('data-lucide', 'disc');
+      if (headerInvertBtn) {
+        headerInvertBtn.classList.remove('bg-pink-600', 'border-pink-400');
+        headerInvertBtn.classList.add('bg-zinc-900', 'border-zinc-700');
+      }
+
+      if (window.lucide) window.lucide.createIcons();
+    }
+
+    function toggleInvertMode() {
+      if (isInvertMode) {
+        exitInvertScene();
+      } else {
+        showInvertScene();
+      }
+    }
+
+    function blowOutCandles() {
+      if (!candlesLit) return;
+      candlesLit = false;
+
+      // 1. Extinguish flames & spawn smoke
+      flames.forEach(f => f.classList.add('hidden'));
+      const smokes = document.querySelectorAll('.candle-smoke');
+      smokes.forEach(s => {
+        s.classList.remove('hidden');
+        s.classList.add('smoke-puff');
+      });
+
+      // 2. Confetti explosion
+      fireConfetti(130);
+
+      // 3. Stop birthday chime & play "Her Way" by PND
+      stopBgm();
+      playHerWay(true);
+
+      // 4. Toast
+      showToast('🎂 Candles blown out! Launching your Chapter 23 photo story 🎶');
+
+      // 5. Transition to Photo Story after smoke rises
+      setTimeout(() => {
+        showPhotoScene();
+      }, 1100);
+    }
+
+    function relightCandles() {
+      candlesLit = true;
+      flames.forEach(f => f.classList.remove('hidden'));
+      const smokes = document.querySelectorAll('.candle-smoke');
+      smokes.forEach(s => {
+        s.classList.add('hidden');
+        s.classList.remove('smoke-puff');
+      });
+      showCakeScene();
+      showToast('🕯️ Candles relit! Make another wish & blow them out again ✨');
+    }
+
+    blowBtn.addEventListener('click', blowOutCandles);
+    document.getElementById('cake-interactive').addEventListener('click', () => {
+      if (candlesLit) blowOutCandles();
+    });
+
+    document.getElementById('back-to-cake-btn').addEventListener('click', showCakeScene);
+    document.getElementById('replay-candles-btn').addEventListener('click', relightCandles);
+
+    // Invert mode buttons
+    document.getElementById('header-invert-btn')?.addEventListener('click', toggleInvertMode);
+    document.getElementById('scene-invert-btn')?.addEventListener('click', toggleInvertMode);
+    document.getElementById('exit-invert-btn')?.addEventListener('click', exitInvertScene);
+    document.getElementById('invert-play-toggle-btn')?.addEventListener('click', toggleInvertAudio);
+
+    // Entrance button
+    document.getElementById('enter-btn').addEventListener('click', () => {
+      const overlay = document.getElementById('entrance-overlay');
+      overlay.classList.add('opacity-0', 'pointer-events-none');
+      setTimeout(() => {
+        overlay.style.display = 'none';
+      }, 700);
+
+      startBgm();
+      fireConfetti();
+      if (herWayAudio) herWayAudio.load();
+      if (invertAudio) invertAudio.load();
+    });
+
+    // Header celebrate button
+    document.getElementById('header-confetti-btn').addEventListener('click', () => {
+      fireConfetti();
+      showToast('Happy 23rd Birthday, Aassssthaa! 🎀✨');
+    });
+  </script>
+</body>
+
+</html>
